@@ -25502,6 +25502,11 @@
 	    },
 	    handleAddTodo: function handleAddTodo(text) {
 	        alert("New todo: " + text);
+	        var currentTodos = this.state.todos;
+	        currentTodos.push({ id: 5, text: text });
+	        this.setState({
+	            todos: currentTodos
+	        });
 	    },
 	    render: function render() {
 	        var todos = this.state.todos;
@@ -25957,7 +25962,7 @@
 	                React.createElement('input', { type: 'text', ref: 'todo', placeholder: 'Describe what has to be done' }),
 	                React.createElement(
 	                    'button',
-	                    { className: 'button', type: 'submit' },
+	                    { className: 'button expanded', type: 'submit' },
 	                    'Add Todo'
 	                )
 	            )
