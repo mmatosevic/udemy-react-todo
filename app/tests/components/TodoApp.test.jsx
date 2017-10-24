@@ -10,4 +10,19 @@ describe('TodoApp', () => {
     it('Should exist', () => {
         expect(TodoApp).toExist();
     });
+
+    it('Should add todo item when fired handle add todo', () => {
+        var newTodoText = "New todo item text";
+        var todoApp = TestUtils.renderIntoDocument(<TodoApp/>);
+        var $el = $(ReactDOM.findDOMNode(todoApp));
+
+        todoApp.handleAddTodo(newTodoText);
+
+        var todos = todoApp.state.todos;
+        expect(todos.length).toBe(5);
+
+        var lastTodo = todos[4];
+        expect(lastTodo.id).toExist();
+        expect(lastTodo.text).toBe(newTodoText);
+    });
 });
