@@ -25527,7 +25527,7 @@
 	        });
 	    },
 	    handleSearch: function handleSearch(showCompleted, searchText) {
-	        setState({
+	        this.setState({
 	            showCompleted: showCompleted,
 	            searchText: searchText.toLowerCase()
 	        });
