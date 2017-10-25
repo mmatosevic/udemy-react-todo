@@ -19,9 +19,8 @@ describe('TodoApp', () => {
         todoApp.handleAddTodo(newTodoText);
 
         var todos = todoApp.state.todos;
-        expect(todos.length).toBe(5);
 
-        var lastTodo = todos[4];
+        var lastTodo = todos[todos.length-1]
         expect(lastTodo.id).toExist();
         expect(lastTodo.text).toBe(newTodoText);
     });
