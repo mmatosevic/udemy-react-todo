@@ -10,4 +10,15 @@ describe('Todo', () => {
     it('Should exist', () => {
         expect(Todo).toExist();
     });
+
+    it('Should call handler when todo completed checkbox is clicked', () => {
+        var todoItem = {id: 1, text: "Dummy", completed: false};
+        var todoToggleSpy = expect.createSpy();
+        var todo = TestUtils.renderIntoDocument(<Todo key={todoItem.id} {...todoItem} onToggle={todoToggleSpy}/>);
+        var $el = $(ReactDOM.findDOMNode(todo));
+
+        TestUtils.Simulate.click($el[0]);
+
+        expect(todoToggleSpy).toHaveBeenCalledWith(1);
+    });
 });
