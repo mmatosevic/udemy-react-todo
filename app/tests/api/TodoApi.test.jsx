@@ -48,4 +48,40 @@ describe('TodoApi', () => {
 
     });
 
+    describe('filterTodos', () => {
+        const allTodos = [
+            {id: 1, text: "First todo item", completed: false},
+            {id: 2, text: "Wash potatoes", completed: false},
+            {id: 3, text: "Buy milk", completed: true},
+            {id: 4, text: "Boil eggs", completed: true},
+            {id: 5, text: "Buy new laptop", completed: false}
+        ];
+
+        it('Should return all todos if no string is specified', () => {
+            var filtered = TodoApi.filterTodos(allTodos, true, '');
+            expect(filtered.length).toBe(allTodos.length);
+        });
+
+        it('Should return just todos matching search string', () => {
+            var filtered = TodoApi.filterTodos(allTodos, true, 'Buy');
+            expect(filtered.length).toBe(2);
+            var filteredIds = filtered.map((todo) => {
+                return todo.id
+            });
+            expect(filteredIds).toContain(3);
+            expect(filteredIds).toContain(5);
+        });
+
+        it('Should return only non completed items', () => {
+            var filtered = TodoApi.filterTodos(allTodos, false, '');
+            expect(filtered.length).toBe(3);
+        });
+
+        it('Should sort by completed status', () => {
+            var filtered = TodoApi.filterTodos(allTodos, true, '');
+            expect(filtered[0].completed).toBe(false);
+            expect(filtered[4].completed).toBe(true);
+        });
+    });
+
 });
