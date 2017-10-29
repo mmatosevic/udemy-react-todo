@@ -17,7 +17,7 @@ module.exports = {
     },
     filterTodos: (todos, includeCompleted, searchPhrase) => {
         var searchPhraseMatchingTodos = todos.filter((todo) => {
-            return searchPhrase === '' || todo.text.toLowerCase().includes(searchPhrase);
+            return searchPhrase === '' || todo.text.toLowerCase().includes(searchPhrase.toLowerCase());
         });
 
         var matchingCompleted = searchPhraseMatchingTodos.filter((todo) => {
